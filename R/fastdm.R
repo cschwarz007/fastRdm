@@ -35,7 +35,7 @@ fastdm <- function(formula=NULL, dat=NULL, method="ks", precision=2.5, wd_fastdm
     for(i in 1:length(mterms$pfix)) write(paste("set",mterms$pfix[[i]][1],mterms$pfix[[i]][2], sep=" "), "experiment.ctl", append = TRUE)  
   }
   if(sum(grepl(":",mterms$pterms, fixed=TRUE)) > 0){
-    for(i in 1:length(meterms$pdep)) write(paste("depends",mterms$pdep[[i]][1],mterms$pdep[[i]][2], sep=" "), "experiment.ctl", append = TRUE)
+    for(i in 1:length(mterms$pdep)) write(paste("depends",mterms$pdep[[i]][1],mterms$pdep[[i]][2], sep=" "), "experiment.ctl", append = TRUE)
   }
   
   write(c(
