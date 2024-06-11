@@ -33,7 +33,7 @@ check_dat <- function(dat, wd_fastdm, res_prefix,subject){
 
 
 #' @title check and parse model formula
-parse_frml <- function(formula){
+parse_frml <- function(formula,vars){
   pterms <- strsplit(as.character(formula)[2], split = c(" + "), fixed=TRUE)[[1]] #extract all parameter terms
   res <- list("pterms"=pterms)
   
