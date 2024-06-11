@@ -1,5 +1,5 @@
 #' @title check data format
-check_dat <- function(dat, wd_fastdm, res_prefix){
+check_dat <- function(dat, wd_fastdm, res_prefix,subject){
   if(class(dat) == "data.frame"){
     vars <- names(dat)
     if(sum(c("TIME","RESPONSE") %in% vars) != 2)
