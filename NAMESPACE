@@ -2,4 +2,3 @@
 
 export(fastRdm)
 export(fastdm)
-useDynLib("./inst/fastdm_30_2/fastdm.dll")
