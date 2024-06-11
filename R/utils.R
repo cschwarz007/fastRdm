@@ -9,6 +9,10 @@ check_dat <- function(dat, wd_fastdm, res_prefix){
     if(sum(unique(dat$RESPONSE) %in% c(0,1)) != 2)
       stop("erroneous response coding: only RESPONSE = 0/1 allowed")
     write.table(dat, paste(wd_fastdm,"/",res_prefix,".dat",sep=""), row.names = FALSE, col.names = FALSE)
+    for (i in unique(dat[c(subject)])[,1]){
+      df <- dat[dat[c(subject)]==i,]
+      write.table(df, paste(wd_fastdm,"/",res_prefix,"_",i,".dat",sep=""), row.names = FALSE, col.names = FALSE)
+    }
     return(vars)
   }else if(class(dat) == "list" & !is.null(names(dat))){
     for(i in 1:length(dat)){
