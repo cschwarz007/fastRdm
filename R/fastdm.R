@@ -11,6 +11,7 @@
 #' @param precision numeric, approximate precision of parameter estimates in decimals.
 #' @param wd_fastdm character, working directory containing fast-dm executable (defaults to 'path').
 #' @param res_prefix character, prefix of temporary data files.
+#' @param subject Name of column holding information on subject no
 #' @param removeTempFiles logical, should the temporary files used by fast-dm should be kept (FALSE) or removed (TRUE). 
 #' @return data.frame, parameter estimates and fit statistics for each fitted RT distribution.
 #' @examples
