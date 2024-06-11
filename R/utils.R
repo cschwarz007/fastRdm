@@ -10,10 +10,10 @@ check_dat <- function(dat, wd_fastdm, res_prefix,subject){
       warning("implausibly long response time(s) detected. consider rescaling to seconds")
     if(sum(unique(dat$RESPONSE) %in% c(0,1)) != 2)
       stop("erroneous response coding: only RESPONSE = 0/1 allowed")
-    write.table(dat, paste(wd_fastdm,"/",res_prefix,".dat",sep=""), row.names = FALSE, col.names = NAMES)
+    write.table(dat, paste(wd_fastdm,"/",res_prefix,".dat",sep=""), row.names = FALSE, quote = FALSE, col.names = NAMES)
     for (i in unique(dat[c(subject)])[,1]){
       df <- dat[dat[c(subject)]==i,]
-      write.table(df, paste(wd_fastdm,"/",res_prefix,"_",i,".dat",sep=""), row.names = FALSE, col.names = NAMES)
+      write.table(df, paste(wd_fastdm,"/",res_prefix,"_",i,".dat",sep=""), row.names = FALSE, quote = FALSE, col.names = NAMES)
     }
     return(vars)
   }else if(class(dat) == "list" & !is.null(names(dat))){
