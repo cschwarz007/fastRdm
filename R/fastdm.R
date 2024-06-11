@@ -24,7 +24,7 @@
 fastdm <- function(formula=NULL, dat=NULL, subject=NULL, method="ks", precision=2.5, res_prefix="data", removeTempFiles=T){
   wd_fastdm = paste0(find.package("fastRdm"),"/fastdm_30_2")
   vars <- check_dat(dat, wd_fastdm, res_prefix, subject)
-  mterms <- parse_frml(formula)
+  mterms <- parse_frml(formula,vars)
   
   #generate design file
   wd_temp <- getwd(); setwd(wd_fastdm) #change working directory to fast-dm
