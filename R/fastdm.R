@@ -20,7 +20,8 @@
 #' out <- fastdm(~ zr*.5 + szr*0 + sv*0 + st0*0 + d*0, dat, method = "ks", precision = 3, res_prefix = "ID")
 #' }
 #' @export
-fastdm <- function(formula=NULL, dat=NULL, method="ks", precision=2.5, wd_fastdm=path, res_prefix="data", removeTempFiles=T){
+fastdm <- function(formula=NULL, dat=NULL, method="ks", precision=2.5, res_prefix="data", removeTempFiles=T){
+  wd_fastdm = paste0(find.package("fastRdm"),"/fastdm_30_2")
   vars <- check_dat(dat, wd_fastdm, res_prefix)
   mterms <- parse_frml(formula)
   
