@@ -16,18 +16,22 @@
 #' @return data.frame, parameter estimates and fit statistics for each fitted RT distribution.
 #' @examples
 #' \dontrun{
-#' path <- "./inst/binaries_30_2"
 #' dat <- rdm(100, a=1, zr=.5, v=1.25, t0=0, N = 10)
-#' out <- fastdm(~ zr*.5 + szr*0 + sv*0 + st0*0 + d*0, dat, method = "ks", precision = 3, res_prefix = "ID")
+#' out <- fastdm(~ zr*.5 + szr*0 + sv*0 + st0*0 + d*0, dat, method = "ks", precision = 3, data_path = "./input_data", res_prefix = "ID")
 #' }
 #' @export
-fastdm <- function(formula=NULL, dat=NULL, subject=NULL, method="ks", precision=2.5, res_prefix="data", removeTempFiles=T){
+fastdm <- function(formula=NULL, dat=NULL, subject=NULL, method="ks", precision=2.5, data_path = "", res_prefix="data", removeTempFiles=T){
   wd_fastdm = paste0(find.package("fastRdm"),"/fastdm_30_2")
-  vars <- check_dat(dat, wd_fastdm, res_prefix, subject)
+  if(data_path="") {
+    data_path = wd_fastdm
+  } else {
+    dir.create(data_path)
+  }
+  vars <- check_dat(dat, data_path, res_prefix, subject)
   mterms <- parse_frml(formula,vars)
   
   #generate design file
-  wd_temp <- getwd(); setwd(wd_fastdm) #change working directory to fast-dm
+  wd_temp <- getwd(); setwd(data_path) #change working directory to fast-dm
   write(c(
     paste("method",method, sep=" "),
     paste("precision",precision, sep=" ")
@@ -47,7 +51,7 @@ fastdm <- function(formula=NULL, dat=NULL, subject=NULL, method="ks", precision=
   ), "experiment.ctl", append = TRUE)
   
   #run fast-dm and remove temporary files
-  system2("fast-dm", stdout="history.txt")
+  system2(paste0(wd_fastm,get_os_binary("fast-dm")), stdout="history.txt")
   out <- read.table("results.dat", header = TRUE)
   
   if(removeTempFiles){
