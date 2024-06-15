@@ -25,7 +25,9 @@ fastdm <- function(formula=NULL, dat=NULL, subject=NULL, method="ks", precision=
   if(data_path=="") {
     data_path = wd_fastdm
   } else {
-    dir.create(data_path)
+    if (!file.exists(data_path)){
+      dir.create(data_path)
+    }
   }
   vars <- check_dat(dat, data_path, res_prefix, subject)
   mterms <- parse_frml(formula,vars)
