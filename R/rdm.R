@@ -1,4 +1,19 @@
-#' @title RDM - create sample data with construct-samples
+#' @title Create sample data
+#' @description Creates sample data with construct-data
+#' 
+#' @param n number of datasets
+#' @param a see details
+#' @param v see details
+#' @param zr see details
+#' @param t0 see details
+#' @param d see details
+#' @param szr see details
+#' @param sv see details
+#' @param st0 see details
+#' @param N see details
+#' @param data_path see details
+#' @param remoteTempFiles see details
+#' @return data.frame, sample set
 #' @export
 rdm <-
 function(n, a=1, zr=0.5, v=1, t0=0.25, d=0, szr=0, sv=0, st0=0, N=1, data_path = "", removeTempFiles=T){
