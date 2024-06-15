@@ -1,3 +1,5 @@
+#' @title RDM - create sample data with construct-samples
+#' @export
 rdm <-
 function(n, a=1, zr=0.5, v=1, t0=0.25, d=0, szr=0, sv=0, st0=0, N=1, data_path = "", removeTempFiles=T){
   if(a <= 0 | zr >= 1 | zr <= 0 | szr < 0 | sv < 0 | st0 < 0){
