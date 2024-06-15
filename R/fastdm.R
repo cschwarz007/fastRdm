@@ -22,7 +22,7 @@
 #' @export
 fastdm <- function(formula=NULL, dat=NULL, subject=NULL, method="ks", precision=2.5, data_path = "", res_prefix="data", removeTempFiles=T){
   wd_fastdm = paste0(find.package("fastRdm"),"/fastdm_30_2")
-  if(data_path="") {
+  if(data_path=="") {
     data_path = wd_fastdm
   } else {
     dir.create(data_path)
