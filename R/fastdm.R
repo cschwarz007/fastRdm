@@ -51,7 +51,7 @@ fastdm <- function(formula=NULL, dat=NULL, subject=NULL, method="ks", precision=
   ), "experiment.ctl", append = TRUE)
   
   #run fast-dm and remove temporary files
-  system2(paste0(wd_fastm,get_os_binary("fast-dm")), stdout="history.txt")
+  system2(paste0(wd_fastdm,"/",get_os_binary("fast-dm")), stdout="history.txt")
   out <- read.table("results.dat", header = TRUE)
   
   if(removeTempFiles){
