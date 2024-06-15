@@ -1,11 +1,17 @@
 predict.dm <-
-function(type="pdf", output="preds", a=1, zr=0.5, v=1, t0=0.25, d=0, szr=0, sv=0, st0=0, wd_fastdm=path, returnPreds=T){
+function(type="pdf", output="preds", a=1, zr=0.5, v=1, t0=0.25, d=0, szr=0, sv=0, st0=0, data_path = "", returnPreds=T){
+  wd_fastdm = paste0(find.package("fastRdm"),"/fastdm_30_2")
+  if(data_path=="") {
+    data_path = wd_fastdm
+  } else {
+    dir.create(data_path)
+  }  
   if(a <= 0 | zr >= 1 | zr <= 0 | szr < 0 | sv < 0 | st0 < 0) stop("invalid parameter manifestations")
-  wd_temp <- getwd(); setwd(wd_fastdm) #change working directory to fast-dm
+  wd_temp <- getwd(); setwd(data_path) #change working directory to fast-dm
   call_args <- paste("-a",a,"-z",zr,"-v",v,"-d",d,"-Z",szr,"-V",sv,"-T",st0)
   switch(type,
-         cdf = system(paste("plot-cdf",call_args,'-o "cdf.lst"'), show.output.on.console=FALSE),
-         pdf = system(paste("plot-density",call_args,'-o "pdf.lst"'), show.output.on.console=FALSE))
+         cdf = system(paste0(wd_fastdm,"/",get_os_binary("plot-cdf")),call_args,'-o "cdf.lst"'), show.output.on.console=FALSE),
+         pdf = system(paste0(wd_fastdm,"/",get_os_binary("plot-density")),call_args,'-o "pdf.lst"'), show.output.on.console=FALSE))
   out <- read.table(list.files(pattern = ".lst"), header = FALSE)
   if(sum(file.remove(list.files(pattern = ".lst"))) > 0) message(paste("generating",type,"of first-passage time distribution"))
   setwd(wd_temp)
