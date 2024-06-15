@@ -2,3 +2,4 @@
 
 export(fastRdm)
 export(fastdm)
+export(rdm)
